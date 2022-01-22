@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  load-balancer:
+    image: nginxapp
+    build:
+      context: ./nginx
+      dockerfile: ./Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - external-exampl
+    restart: always
+
+  app1:
+    image: app1
+    build:
+      context: ./app
+      dockerfile: ./Dockerfile
+      args:
+        PORT: 1234
+    environment:
+      - PORT=1234
+    ports:
+      - "1234:1234"
+    networks:
+      - external-exampl
+
+  app2:
+    image: app2
+    build:
+      context: ./app
+      dockerfile: ./Dockerfile
+      args:
+        PORT: 4321
+    environment:
+      - PORT=4321
+    ports:
+      - "4321:4321"
+    networks:
+      - external-exampl
+
+networks:
+  external-exampl:
+    external: true

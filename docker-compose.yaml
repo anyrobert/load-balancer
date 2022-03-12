@@ -9,7 +9,7 @@ services:
     ports:
       - "8080:8080"
     networks:
-      - external-exampl
+      - external-example
     restart: always
 
   app1:
@@ -24,7 +24,7 @@ services:
     ports:
       - "1234:1234"
     networks:
-      - external-exampl
+      - external-example
 
   app2:
     image: app2
@@ -38,8 +38,8 @@ services:
     ports:
       - "4321:4321"
     networks:
-      - external-exampl
+      - external-example
 
 networks:
-  external-exampl:
+  external-example:
     external: true
